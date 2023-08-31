@@ -1,7 +1,7 @@
 # Contributors:
 ```Joshua Fleshman(ChronosFU)```
 
-```Leo Kim(leo.the.lion)```
+```leo.the.lion```
 
 ```Daniel Febles(dfebs)```
 
