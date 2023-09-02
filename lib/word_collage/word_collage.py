@@ -17,7 +17,7 @@ def avg_greyscale(img: Image.Image) -> None:
     return np.average(np_img.reshape(w * h))
 
 
-def img_to_ascii(img: Image.Image, cols: int, scale: float, dens: int) -> List[str]:
+def img_to_ascii(img: Image.Image, cols: int, scale: float, dens: int) -> None:
     """
     Given Image and dims (rows, cols) returns an m*n list of Images
 
