@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 
-def avg_greyscale(img: Image.Image) -> float:
+def avg_greyscale(img: Image.Image) -> None:
     """
     Calculates average greyscale or luminance value of an input image
 
