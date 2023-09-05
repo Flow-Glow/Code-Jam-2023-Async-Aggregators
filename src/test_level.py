@@ -1,16 +1,20 @@
 import sys
-from .level import Level
 import unittest
 
 from PyQt6.QtWidgets import QApplication
 
+from .level import Level
+
 
 class TestLevel(unittest.TestCase):
+    """Tests for level.py"""
 
-    def setUp(self):
+    def setUp(self) -> None:
+        """Setup QApplication before test cases"""
         self.app = QApplication(sys.argv)
 
-    def test_get_image_source(self):
+    def test_get_image_source(self) -> None:
+        """Test that the right image is received for each level"""
         level_image_source_map = {
             1: 'images/sample.png',
             2: 'images/clockwork.jpg'
@@ -18,12 +22,14 @@ class TestLevel(unittest.TestCase):
         for k, v in level_image_source_map.items():
             test_level = Level(k)
             self.assertEqual(test_level.get_image_source(), v)
-    
-    def test_get_image_source_unknown_level(self):
+
+    def test_get_image_source_unknown_level(self) -> None:
+        """Test that the default image source is chosen on unknown level"""
         test_level = Level(999)
         self.assertEqual(test_level.get_image_source(), 'images/default.png')
 
-    def test_get_secret_answer(self):
+    def test_get_secret_answer(self) -> None:
+        """Test that the secret answer is correct for each level"""
         secret_answer_map = {
             1: 'secret',
             2: 'secret2'
@@ -33,10 +39,11 @@ class TestLevel(unittest.TestCase):
             test_level = Level(k)
             self.assertEqual(test_level.get_secret_answer(), v)
 
-    def test_get_secret_answer_unknown_level(self):
+    def test_get_secret_answer_unknown_level(self) -> None:
+        """Test that a default string is chosen on unknown level"""
         test_level = Level(999)
         self.assertEqual(test_level.get_secret_answer(), 'pythoncodejam2023')
-    
+
     # This test literally results in a segfault so I'm gonna wait on that
     # def test_get_filters(self):
     #     print('yeet')
@@ -100,7 +107,8 @@ class TestLevel(unittest.TestCase):
     #         expected_filters = expected_filters_map[k]
     #         self.assertEqual(test_level.get_filters(), expected_filters)
 
-    def test_get_filters_unknown_level(self):
-        test_level = Level(level_number=999)  
-        
+    def test_get_filters_unknown_level(self) -> None:
+        """Test that no filter is chosen on unknown level"""
+        test_level = Level(level_number=999)
+
         self.assertEqual(test_level.get_filters(), [])

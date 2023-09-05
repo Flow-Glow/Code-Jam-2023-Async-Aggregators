@@ -1,10 +1,10 @@
 import sys
-from pathlib import Path
 
 from PyQt6.QtWidgets import QApplication
 
 import level
 import window
+
 
 def main() -> None:
     """Main function"""
@@ -15,6 +15,7 @@ def main() -> None:
 
     game_window.show()
     sys.exit(app.exec())
+
 
 if __name__ == '__main__':
     main()

@@ -1,8 +1,8 @@
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtGui import QIcon, QPixmap
 from PyQt6.QtWidgets import (
-    QFrame, QGridLayout, QHBoxLayout, QVBoxLayout, QLabel, QLineEdit,
-    QMainWindow, QMessageBox, QPushButton, QStackedLayout, QWidget
+    QFrame, QGridLayout, QHBoxLayout, QLabel, QLineEdit, QMainWindow,
+    QMessageBox, QPushButton, QStackedLayout, QWidget
 )
 
 from level import Level
