@@ -1,6 +1,6 @@
 from PyQt6.QtCore import Qt
 
-from control_panel import ControlPanel
+import control_panel
 
 
 class Level:
@@ -49,7 +49,7 @@ class Level:
             filters = [
                 (
                     'icons/button_sample.png',
-                    ControlPanel(
+                    control_panel.ControlPanel(
                         'Image Differencing',
                         [('X', (0, 100), Qt.Orientation.Horizontal),
                          ('Y', (0, 100), Qt.Orientation.Horizontal)]
@@ -57,14 +57,14 @@ class Level:
                 ),
                 (
                     'icons/button_sample2.png',
-                    ControlPanel(
+                    control_panel.ControlPanel(
                         'Double Exposure',
                         [('Exposure', ('Image 1', 'Image 2'), Qt.Orientation.Horizontal)]
                     ),
                 ),
                 (
                     'icons/button_sample3.png',
-                    ControlPanel(
+                    control_panel.ControlPanel(
                         'Motion Manipulation',
                         [('Wavelength', (0, 100), Qt.Orientation.Horizontal),
                          ('Gap', (0, 100), Qt.Orientation.Horizontal),
@@ -77,7 +77,7 @@ class Level:
             return [
                 (
                     'icons/button_sample.png',
-                    ControlPanel(
+                    control_panel.ControlPanel(
                         'Image Differencing',
                         [
                             ('X', (0, 100), Qt.Orientation.Horizontal),
@@ -87,14 +87,14 @@ class Level:
                 ),
                 (
                     'icons/button_sample2.png',
-                    ControlPanel(
+                    control_panel.ControlPanel(
                         'Double Exposure',
                         [('Exposure', ('Image 1', 'Image 2'), Qt.Orientation.Horizontal)]
                     ),
                 ),
                 (
                     'icons/button_sample3.png',
-                    ControlPanel(
+                    control_panel.ControlPanel(
                         'Motion Manipulation',
                         [
                             ('Wavelength', (0, 100), Qt.Orientation.Horizontal),
