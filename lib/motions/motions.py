@@ -17,32 +17,6 @@ class OFF_CANVAS_FILL(Enum):
 
 class Effect:
     @staticmethod
-    def spiral(img, magnitude=1):
-        centerx = img.width / 2
-        centery = img.height / 2
-
-        distance_scale = min(img.width, img.height) / 2 * 0.9
-        img_output = img.copy()
-        for y in range(img_output.height):
-            print(f"{y}/{img_output.height}")
-            for x in range(img_output.width):
-                distance = ((x - centerx) ** 2 + (y - centery) ** 2) ** 0.5 + 0.1
-                theta = (
-                    magnitude
-                    * (max(distance_scale - distance, 0) / distance_scale) ** 0.4
-                )
-                xsource = (
-                    (x - centerx) * cos(theta) + (y - centery) * sin(theta) + centerx
-                )
-                ysource = (
-                    -(x - centerx) * sin(theta) + (y - centery) * cos(theta) + centery
-                )
-
-                pixel = get_blended_pixel(img, xsource, ysource)
-                img_output.putpixel((x, y), pixel)
-        return img_output
-
-    @staticmethod
     def explode(xmesh, ymesh, magnitude=1):
         height, width = xmesh.shape
         normalized_distance = (
@@ -51,25 +25,9 @@ class Effect:
         new_distance = normalized_distance / (
             np.maximum((1 - normalized_distance) * 3 * magnitude, 1) + 0.1
         )
-        print(new_distance, normalized_distance)
         xmesh = (xmesh - width / 2) * new_distance / normalized_distance + width / 2
         ymesh = (ymesh - height / 2) * new_distance / normalized_distance + height / 2
         return xmesh, ymesh
-
-        # offset = np.sin(xmesh / width * math.pi * 2 * wavenum) * magnitude * height / 4
-        # normalized_x = (2 * xmesh / width - 1)**2
-        # normalized_y = (2 * ymesh / height - 1)**2
-        # r_ = (normalized_x + normalized_y)**.5
-        # r = np.clip(r_, 0, 1)
-        # nr = (1-r**2)**.5
-        # theta = np.arctan2(normalized_y, normalized_x)
-        # nxn = nr*np.cos(theta)
-        # nyn = nr*np.sin(theta)
-        # x2=(nxn+1)*width/2
-        # y2=(nyn+1)*height/2
-        # f = r_[200:-200,200:-200]
-        # print(f.shape, f)
-        return x2, y2
 
     @staticmethod
     def vertical_wave(xmesh, ymesh, wavenum=1.5, magnitude=1):
@@ -119,7 +77,7 @@ class Motion_Transformer:
     def reset_cache(self):
         self.cache = {}
 
-    def update_image(self, img: Image.Image):
+    def update_image(self, img):
         if img.shape != self.img.shape:
             self._generate_mesh()
         self.img = img
