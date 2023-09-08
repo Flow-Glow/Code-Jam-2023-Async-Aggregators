@@ -9,19 +9,18 @@ from PIL import Image
 
 class PIXEL_INTERPOLATION_METHOD(Enum):
     """
-    Method used to resolve a non-integer pixel value after all
-    motions are complete.  Potentially doing a mix of surrounding
-    pixels
+    Interperlation methods for targets between pixels
+
+    Allows you to select a method used to resolve a non-integer pixel value
+    after all motions are complete.  Potentially doing a mix of surrounding
+    pixels.
     """
 
     INTEGER = auto()
 
 
 class OFF_CANVAS_FILL(Enum):
-    """
-    Which pixels to use when a motion effect brings pixels from outside
-    the canvas into the image
-    """
+    """Methods used to fill pixels from outside the image canvas"""
 
     WRAP = auto()
     MIRROR = auto()
