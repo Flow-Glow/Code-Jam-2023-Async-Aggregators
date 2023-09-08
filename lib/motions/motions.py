@@ -121,7 +121,7 @@ class Effect:
         return xmesh + offset, ymesh
 
 
-class Motion_Transformer:
+class MotionTransformer:
     """Processes all motion effects together to save on pre-processing and post-processing required
     for each"""
 
