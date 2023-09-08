@@ -8,16 +8,20 @@ from PIL import Image
 
 
 class PIXEL_INTERPOLATION_METHOD(Enum):
-    """Method used to resolve a non-integer pixel value after all
+    """
+    Method used to resolve a non-integer pixel value after all
     motions are complete.  Potentially doing a mix of surrounding
-    pixels"""
+    pixels
+    """
 
     INTEGER = auto()
 
 
 class OFF_CANVAS_FILL(Enum):
-    """Which pixels to use when a motion effect brings pixels from outside
-    the canvas into the image"""
+    """
+    Which pixels to use when a motion effect brings pixels from outside
+    the canvas into the image
+    """
 
     WRAP = auto()
     MIRROR = auto()
@@ -122,8 +126,7 @@ class Effect:
 
 
 class MotionTransformer:
-    """Processes all motion effects together to save on pre-processing and post-processing required
-    for each"""
+    """Processes all motion effects together to save on pre-processing and post-processing required for each"""
 
     def __init__(
         self,
@@ -187,6 +190,6 @@ class MotionTransformer:
         :return:
         """
         self.xmesh, self.ymesh = np.meshgrid(
-            np.arange(img.width), np.arange(img.height), sparse=False
+            np.arange(self.img.width), np.arange(self.img.height), sparse=False
         )
         self.reset_cache()
