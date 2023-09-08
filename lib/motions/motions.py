@@ -1,8 +1,9 @@
-from typing import List
+import math
 from enum import Enum, auto
+from typing import List
+
 import numpy as np
 from PIL import Image
-import math
 
 
 class PIXEL_INTERPOLATION_METHOD(Enum):
