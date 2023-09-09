@@ -1,8 +1,10 @@
 from pathlib import Path
 from typing import Dict, List, Tuple, cast
 
+from PIL import Image
 from PyQt6.QtCore import Qt
 
+from lib.motions.motions import MotionTransformer
 from src.control_panel import ControlPanel
 
 FilterItem = Tuple[Path, ControlPanel, Dict[str, Path | str | None | int]]
@@ -32,6 +34,8 @@ class Level:
             return Path(image_dir_path, "clockwork.jpg")
         if self.level_number == 3:
             return Path(image_dir_path, "number_hidden_image.png")
+        if self.level_number == 4:
+            return Path(image_dir_path, "desert.jpg")
         return Path(image_dir_path, "default.png")
 
     def get_secret_answer(self) -> str:
@@ -46,9 +50,9 @@ class Level:
         if self.level_number == 2:
             return "secret2"
         if self.level_number == 3:
-            return "Very secret"
-        if self.level_number == 4:
             return "200012"
+        if self.level_number == 4:
+            return "Turbo secret"
         return "pythoncodejam2023"
 
     def get_filters(self) -> FilterList:
@@ -69,16 +73,28 @@ class Level:
                         "Ishihara",
                         {
                             "sliders": [
-                                ("A", (0, 100), Qt.Orientation.Horizontal),
-                                ("B", (0, 100), Qt.Orientation.Horizontal),
+                                (
+                                    "A",
+                                    (0, 100),
+                                    Qt.Orientation.Horizontal,
+                                    True
+                                ),
+                                (
+                                    "B",
+                                    (0, 100),
+                                    Qt.Orientation.Horizontal,
+                                    True
+                                ),
                             ],
                             "dropdowns": [],
                             "description": "This is a description"
                         }
+
                     ),
                     {
                         "second_image": None,
                         "secret_code": "42",
+                        "MotionTransformer": None,
                     },
                 ),
             ],
@@ -87,33 +103,25 @@ class Level:
                     Path(icons_dir_path, "button_sample2.png"),
                     ControlPanel(
                         "Double Exposure",
-
                         {
                             "sliders": [
                                 (
                                     "Exposure",
                                     ("Image 1", "Image 2"),
                                     Qt.Orientation.Horizontal,
+                                    False
                                 )
                             ],
                             "dropdowns": [],
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
-                                           "tempor incididunt ut labore et dolore magna aliqua. Nullam ac tortor "
-                                           "vitae purus faucibus. Velit euismod in pellentesque massa placerat duis "
-                                           "ultricies lacus sed. Et sollicitudin ac orci phasellus egestas tellus. "
-                                           "Non blandit massa enim nec dui nunc mattis enim. Eu non diam phasellus "
-                                           "vestibulum lorem sed risus ultricies. Nisl tincidunt eget nullam non nisi "
-                                           "est sit amet facilisis. Nulla aliquet enim tortor at auctor urna nunc id. "
-                                           "Facilisis magna etiam tempor orci eu lobortis. Purus gravida quis blandit "
-                                           "turpis cursus. Feugiat pretium nibh ipsum consequat nisl vel pretium. "
-                                           "Donec massa sapien faucibus et molestie. Pellentesque habitant morbi "
-                                           "tristique senectus et netus et. Neque volutpat ac tincidunt vitae semper. "
-                                           "Faucibus vitae aliquet nec ullamcorper sit amet risus nullam."
+
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nullam ac tortor vitae purus faucibus. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Et sollicitudin ac orci phasellus egestas tellus. Non blandit massa enim nec dui nunc mattis enim. Eu non diam phasellus vestibulum lorem sed risus ultricies. Nisl tincidunt eget nullam non nisi est sit amet facilisis. Nulla aliquet enim tortor at auctor urna nunc id. Facilisis magna etiam tempor orci eu lobortis. Purus gravida quis blandit turpis cursus. Feugiat pretium nibh ipsum consequat nisl vel pretium. Donec massa sapien faucibus et molestie. Pellentesque habitant morbi tristique senectus et netus et. Neque volutpat ac tincidunt vitae semper. Faucibus vitae aliquet nec ullamcorper sit amet risus nullam."
                         }
+
                     ),
                     {
                         "second_image": Path(image_dir_path, "doggo.jpg"),
                         "secret_code": "secret",
+                        "MotionTransformer": None,
                     },
                 ),
             ],
@@ -125,23 +133,51 @@ class Level:
                         {
                             "sliders": [],
                             "dropdowns": [
-                                [
-                                    "Rust",
-                                    "Chocolate",
-                                    "Flamenco",
-                                    "Casablanca",
-                                    "Buff"
-                                ]
+                                ["Rust", "Chocolate", "Flamenco", "Casablanca", "Buff"]
                             ],
+
                             "buttons": [
                                 1  # TODO MAKE THIS HAVE INFO
                             ],
                             "description": "This is a description"
                         }
+
                     ),
-                    {}
+                    {},
                 )
-            ]
+            ],
+            [
+                (
+                    Path(icons_dir_path, "rishihara.png"),
+                    ControlPanel(
+                        "Motion",
+                        {
+                            "sliders": [
+                                (
+                                    "horizontal wave",
+                                    (0, 100),
+                                    Qt.Orientation.Horizontal,
+                                ),
+                                ("vertical wave", (0, 100), Qt.Orientation.Horizontal),
+                                ("vertical spike", (0, 100), Qt.Orientation.Horizontal),
+                                (
+                                    "horizontal spike",
+                                    (0, 100),
+                                    Qt.Orientation.Horizontal,
+                                ),
+                            ],
+                            "dropdowns": [],
+                        },
+                    ),
+                    {
+                        "second_image": None,
+                        "secret_code": "Turbo secret",
+                        "MotionTransformer": MotionTransformer(
+                            Image.open(image_dir_path / "desert.jpg")
+                        ),
+                    },
+                ),
+            ],
         ]
 
         if 0 <= self.level_number - 1 < len(filters):

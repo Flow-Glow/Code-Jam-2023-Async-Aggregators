@@ -1,8 +1,22 @@
+from typing import Any
+
 from PyQt6.QtCore import Qt, pyqtSignal
+from PyQt6.QtGui import QMouseEvent
 from PyQt6.QtWidgets import (
     QComboBox, QFrame, QHBoxLayout, QLabel, QPushButton, QSlider, QVBoxLayout,
     QWidget
 )
+
+
+class NoDragSlider(QSlider):
+    """QSlider subclass to disable dragging."""
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super(NoDragSlider, self).__init__(*args, **kwargs)
+
+    def mouseMoveEvent(self, event: QMouseEvent) -> None:
+        """Suppress the mouseMoveEvent to disable dragging."""
+        pass
 
 
 class ControlPanel(QWidget):
@@ -23,9 +37,13 @@ class ControlPanel(QWidget):
         layout.addWidget(title_box)
 
         for info in widget_info.get('sliders', []):
-            label, slider_range, orientation = info
+            label, slider_range, orientation, disable_mouse_drag = info
+            print(disable_mouse_drag)
             layout.addWidget(QLabel(label))
-            slider = QSlider(orientation)
+            if disable_mouse_drag:
+                slider = NoDragSlider(orientation)
+            else:
+                slider = QSlider(orientation)
             slider.setMinimum(0)
             slider.setMaximum(20)
             slider.setTickInterval(1)
@@ -134,6 +152,16 @@ class ControlPanel(QWidget):
             "border: 1px solid 'black';"
             "border-radius: 6px;"
             "background-color: 'white'; }"
+
+            "QSlider::handle:horizontal {"
+            "background-color: gray;"
+            "width: 20px;"
+            "border-radius: 3px; }"
+
+            "QSlider::handle:vertical {"
+            "background-color: black;"
+            "height: 20px;"
+            "border-radius: 3px; }"
         )
 
         if horizontal:
