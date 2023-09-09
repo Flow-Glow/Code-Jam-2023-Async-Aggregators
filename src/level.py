@@ -114,7 +114,18 @@ class Level:
                             ],
                             "dropdowns": [],
 
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nullam ac tortor vitae purus faucibus. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Et sollicitudin ac orci phasellus egestas tellus. Non blandit massa enim nec dui nunc mattis enim. Eu non diam phasellus vestibulum lorem sed risus ultricies. Nisl tincidunt eget nullam non nisi est sit amet facilisis. Nulla aliquet enim tortor at auctor urna nunc id. Facilisis magna etiam tempor orci eu lobortis. Purus gravida quis blandit turpis cursus. Feugiat pretium nibh ipsum consequat nisl vel pretium. Donec massa sapien faucibus et molestie. Pellentesque habitant morbi tristique senectus et netus et. Neque volutpat ac tincidunt vitae semper. Faucibus vitae aliquet nec ullamcorper sit amet risus nullam."
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
+                                           "tempor incididunt ut labore et dolore magna aliqua. Nullam ac tortor "
+                                           "vitae purus faucibus. Velit euismod in pellentesque massa placerat duis "
+                                           "ultricies lacus sed. Et sollicitudin ac orci phasellus egestas tellus. "
+                                           "Non blandit massa enim nec dui nunc mattis enim. Eu non diam phasellus "
+                                           "vestibulum lorem sed risus ultricies. Nisl tincidunt eget nullam non nisi "
+                                           "est sit amet facilisis. Nulla aliquet enim tortor at auctor urna nunc id. "
+                                           "Facilisis magna etiam tempor orci eu lobortis. Purus gravida quis blandit "
+                                           "turpis cursus. Feugiat pretium nibh ipsum consequat nisl vel pretium. "
+                                           "Donec massa sapien faucibus et molestie. Pellentesque habitant morbi "
+                                           "tristique senectus et netus et. Neque volutpat ac tincidunt vitae semper. "
+                                           "Faucibus vitae aliquet nec ullamcorper sit amet risus nullam."
                         }
 
                     ),
