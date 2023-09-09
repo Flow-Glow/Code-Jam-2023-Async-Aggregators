@@ -17,8 +17,9 @@ class ControlPanel(QWidget):
         layout = QVBoxLayout(self)
         self.title = title
         self.combo_boxes = []
+        self.description = widget_info.get('description', None)
 
-        title_box = self.create_panel_title(title)
+        title_box = self.create_panel_title(title, self.description)
         layout.addWidget(title_box)
 
         for info in widget_info.get('sliders', []):
@@ -82,11 +83,12 @@ class ControlPanel(QWidget):
         self.sliderValueChanged.emit(label, value)
 
     @staticmethod
-    def create_panel_title(name: str) -> QFrame:
+    def create_panel_title(name: str, description: str) -> QFrame:
         """
         Stylised control panel title for consistency
 
         :param name:
+        :param description:
         :return: QFrame panel title
         """
         title_box = QFrame()
@@ -101,14 +103,17 @@ class ControlPanel(QWidget):
             "background-color: 'white'; }"
         )
 
-        title_centre = QHBoxLayout(title_box)
+        title_centre = QVBoxLayout(title_box)  # Change QHBoxLayout to QVBoxLayout for vertical stacking
 
         title = QLabel(name)
         title.setStyleSheet("font-size: 22px")
 
-        title_centre.addWidget(QLabel())
+        desc_label = QLabel(description)
+        desc_label.setWordWrap(True)
+        desc_label.setStyleSheet("font-size: 16px;")  # Add some styling for the description
+
         title_centre.addWidget(title)
-        title_centre.addWidget(QLabel())
+        title_centre.addWidget(desc_label)
 
         return title_box
 
