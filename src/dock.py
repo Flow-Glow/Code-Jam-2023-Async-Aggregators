@@ -36,6 +36,7 @@ class Dock(QWidget):
                     value,
                     {
                         "second_image": args["second_image"],
+                        "MotionTransformer": args["MotionTransformer"],
                     },
                 )
             )
@@ -169,6 +170,7 @@ class Dock(QWidget):
         args_to_pass = self.args_cache
         args_to_pass["second_image"] = args["second_image"]
         args_to_pass["image_to_edit"] = str(self.level.get_image_source())
+        args_to_pass["MotionTransformer"] = args["MotionTransformer"]
 
         new_image = apply_filter(filter_title, args_to_pass)
         self.update_image(new_image)
