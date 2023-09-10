@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict, List, Tuple, cast
+from typing import cast
 
 from PIL import Image
 from PyQt6.QtCore import Qt
@@ -7,8 +7,8 @@ from PyQt6.QtCore import Qt
 from lib.motions.motions import MotionTransformer
 from src.control_panel import ControlPanel
 
-FilterItem = Tuple[Path, ControlPanel, Dict[str, Path | str | None | int]]
-FilterList = List[FilterItem]
+FilterItem = tuple[Path, ControlPanel, dict[str, Path | str | None | int]]
+FilterList = list[FilterItem]
 
 
 class Level:

@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import Tuple
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -42,7 +41,7 @@ def generate_image(alphanumeric: str, difficulty: int) -> Image.Image:
 
 def generate_xor_pair(
     image: Image.Image, alphanumeric: str
-) -> Tuple[Image.Image, Image.Image]:
+) -> tuple[Image.Image, Image.Image]:
     """
     Split the original image into two images suc that when XORed, can reconstruct the original image back
 

@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Callable, Dict
+from typing import Callable
 
 from PyQt6.QtCore import QSize, pyqtSignal
 from PyQt6.QtGui import QIcon, QPixmap
@@ -33,7 +33,7 @@ class Dock(QWidget):
         self.img_label = image_label
         self.image_display = image_display
         self.filters = []
-        self.args_cache: Dict[str, int | str] = {}
+        self.args_cache: dict[str, int | str] = {}
 
         for _, control_panel, args in self.level.get_filters():
             control_panel.sliderValueChanged.connect(

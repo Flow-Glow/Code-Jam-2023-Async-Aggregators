@@ -1,12 +1,11 @@
 import random
 from pathlib import Path
-from typing import List, Tuple
 
 import numpy as np
 from PIL import Image, ImageDraw
 
 
-def prepare_input(img_path: Path) -> Tuple[Image.Image, List[int]]:
+def prepare_input(img_path: Path) -> tuple[Image.Image, list[int]]:
     """
     Prepare the input image by center cropping into a square
 
@@ -41,7 +40,7 @@ def avg_greyscale(img: Image.Image) -> float:
     return np.average(np_img.reshape(w * h))
 
 
-def img_to_ascii(img: Image.Image, dens: int) -> List[str]:
+def img_to_ascii(img: Image.Image, dens: int) -> list[str]:
     """
     Given Image and dims (rows, cols) returns an m*n list of Images
 
@@ -89,8 +88,8 @@ def img_to_ascii(img: Image.Image, dens: int) -> List[str]:
 
 def ascii_to_img(
     ascii_text_file_path: Path,
-    coordinates: List[int],
-    input_img_size: Tuple[int, int],
+    coordinates: list[int],
+    input_img_size: tuple[int, int],
     output_path: Path,
 ) -> Image.Image:
     """
