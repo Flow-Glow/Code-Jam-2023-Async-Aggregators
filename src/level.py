@@ -31,7 +31,7 @@ class Level:
         if self.level_number == 1:
             return Path(image_dir_path, "reverse_ishihara.png")
         if self.level_number == 2:
-            return Path(image_dir_path, "snake.png")
+            return Path(image_dir_path, "camal_image.jpg")
         if self.level_number == 3:
             return Path(image_dir_path, "number_hidden_image.png")
         if self.level_number == 4:
@@ -124,7 +124,7 @@ class Level:
                         },
                     ),
                     {
-                        "second_image": Path(image_dir_path, "cases.jpeg"),
+                        "second_image": Path(image_dir_path, "snake.png"),
                         "secret_code": "snake_case",
                         "MotionTransformer": None,
                     },

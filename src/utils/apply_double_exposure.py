@@ -34,7 +34,6 @@ def apply_double_exposure(img1: tuple, img2: tuple, slider_value: int, w: int, h
 
     # Convert slider value to float between 0 and 1
     adjusted_slider_value = float(slider_value * 5) / 100
-
     # Apply double exposure
     blended_image = double_exposure(img1, img2, adjusted_slider_value)
 
