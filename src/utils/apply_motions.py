@@ -14,11 +14,11 @@ def apply_motion(args: dict) -> QPixmap:
     try:
         image = mt.calculate_output(
             (
-                args.get("horizontal wave", 0) * 5 / 100,
-                args.get("vertical wave", 0) * 5 / 100,
-                args.get("vertical spike", 0) * 5 / 100,
-                args.get("horizontal spike", 0) * 5 / 100,
-                args.get("explode", 0) * 5 / 100,
+                args.get("horizontal wave", 0),
+                args.get("vertical wave", 0),
+                args.get("vertical spike", 0),
+                args.get("horizontal spike", 0),
+                args.get("explode", 0),
             )
         )
         image = image.convert("RGBA")

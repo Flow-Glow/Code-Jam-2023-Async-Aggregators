@@ -161,6 +161,7 @@ class MotionTransformer:
     def __init__(
         self,
         img: Image.Image,
+        answer: str,
         interpolation: PIXEL_INTERPOLATION_METHOD = PIXEL_INTERPOLATION_METHOD.INTEGER,
         fill_method: OFF_CANVAS_FILL = OFF_CANVAS_FILL.MIRROR,
         funclist: Iterable[Callable] = (
@@ -172,6 +173,7 @@ class MotionTransformer:
         ),
     ) -> None:
         self.img = img
+        self.answer = answer
         self.interpolation = interpolation
         self.fill_method = fill_method
         self.funclist = tuple(funclist)
@@ -182,6 +184,10 @@ class MotionTransformer:
             tuple[str, float], tuple[NDArray, NDArray]
         ] = OrderedDict()
         self.cache_capacity: int = 10
+
+        self.offsets = []
+        for letter in self.answer.upper():
+            self.offsets.append(ord(letter)-65)
 
     def reset_cache(self) -> None:
         """
@@ -210,8 +216,8 @@ class MotionTransformer:
         :return:
         """
         xmesh, ymesh = self.xmesh, self.ymesh
-        for func, magnitude in zip(self.funclist, magnitudelist):
-            xmesh, ymesh = func(xmesh, ymesh, magnitude)
+        for func, magnitude, offset in zip(self.funclist, magnitudelist, self.offsets):
+            xmesh, ymesh = func(xmesh, ymesh, (magnitude - offset) / 20)
         xmesh = xmesh.astype(int) % self.img.width
         ymesh = ymesh.astype(int) % self.img.height
         np_img = np.array(self.img)

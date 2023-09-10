@@ -53,7 +53,7 @@ class Level:
         if self.level_number == 4:
             return "obfuscation"
         if self.level_number == 5:
-            return "secret"
+            return "codes"
         return "pythoncodejam2023"
 
     def get_filters(self) -> FilterList:
@@ -212,16 +212,20 @@ class Level:
                                 ("explode", (0, 100), Qt.Orientation.Horizontal, False),
                             ],
                             "dropdowns": [],
-                            "description": "We were unable to finish this level, "
-                            "but we really liked this image editing functionality."
-                            "Thanks for playing!",
+                            "description": "Your task: to undo the distortions and reveal the hidden image beneath. "
+                                           "With each adjustment, the chaos unravels, and the true form emerges from the digital haze. "
+                                           "It's a journey from obscurity to clarity, "
+                                           "where the final picture holds secrets yet to be uncovered. "
+                                           "The distorted image yearns for your touch, inviting you "
+                                           "to continue the quest, to unveil its concealed truth."
                         },
                     ),
                     {
                         "second_image": None,
-                        "secret_code": "Picasso",
+                        "secret_code": "codes",
                         "MotionTransformer": MotionTransformer(
-                            Image.open(image_dir_path / "img2.jpg")
+                            Image.open(image_dir_path / "img2.jpg"),
+                            "codes"
                         ),
                     },
                 ),
