@@ -144,7 +144,7 @@ def seed_secret(ascii_file_path: Path, secret: str, binary_mode: bool) -> None:
         [
             lines[random_line][0:position],
             secret,
-            lines[random_line][position + secret_length :],
+            lines[random_line][position + secret_length:],
         ]
     )
 
