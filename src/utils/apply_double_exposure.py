@@ -9,7 +9,9 @@ from src.utils.lru_cache_pil import LRUCachePIL
 _image_cache = LRUCachePIL(capacity=10)  # Cache capacity of 10 images
 
 
-def apply_double_exposure(img1: tuple, img2: tuple, slider_value: int, w: int, h: int) -> QPixmap:
+def apply_double_exposure(
+    img1: tuple, img2: tuple, slider_value: int, w: int, h: int
+) -> QPixmap:
     """
     Apply double exposure to an image
 
@@ -42,7 +44,9 @@ def apply_double_exposure(img1: tuple, img2: tuple, slider_value: int, w: int, h
     image_np = np.array(blended_image)
     height, width, channel = image_np.shape
     bytesPerLine = 3 * width
-    qimage = QImage(image_np.data, width, height, bytesPerLine, QImage.Format.Format_RGB888)
+    qimage = QImage(
+        image_np.data, width, height, bytesPerLine, QImage.Format.Format_RGB888
+    )
     pixmap = QPixmap.fromImage(qimage)
     pixmap = pixmap.scaled(w, h)
     return pixmap

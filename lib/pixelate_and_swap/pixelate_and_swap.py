@@ -5,7 +5,9 @@ from PIL import Image
 from sklearn.cluster import MiniBatchKMeans
 
 
-def pixelate_and_group_colors_sampled(image: Image.Image, group_number: int, sample_fraction: float = 0.1) -> Image:
+def pixelate_and_group_colors_sampled(
+    image: Image.Image, group_number: int, sample_fraction: float = 0.1
+) -> Image:
     """
     Pixelate and group colors of an image using MiniBatchKMeans clustering
 
@@ -35,7 +37,9 @@ def pixelate_and_group_colors_sampled(image: Image.Image, group_number: int, sam
 
     # Assign all pixels to nearest cluster centers
     labels = kmeans.predict(pixels)
-    new_pixels = np.array([list(cluster_centers[label]) for label in labels], dtype=np.uint8)
+    new_pixels = np.array(
+        [list(cluster_centers[label]) for label in labels], dtype=np.uint8
+    )
 
     # Reshape to original image shape
     new_image_data = new_pixels.reshape(data.shape)

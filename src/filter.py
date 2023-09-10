@@ -163,40 +163,33 @@ def apply_filter(filter_name: str, args: dict) -> QPixmap:
                 args_for_filter["image_label_w"] = value
             if key == "image_label_h":
                 args_for_filter["image_label_h"] = value
-        return apply_unmask_reverse_ishihara(
-            args_for_filter
-        )
+        return apply_unmask_reverse_ishihara(args_for_filter)
     if filter_name == "Color Swap":
         return apply_color_swap(
             args.get("image_to_edit", 0),
             args.get("first_color", 0),
             args.get("second_color", 0),
             args["image_label_w"],
-            args["image_label_h"]
+            args["image_label_h"],
         )
     if filter_name == "Hidden in ASCII":
         args_for_filter = {}
         for key, value in args.items():
-            if key in (
-                    "image_to_edit",
-                    "image_label_w",
-                    "image_label_h",
-                    "secret"
-            ):
+            if key in ("image_to_edit", "image_label_w", "image_label_h", "secret"):
                 args_for_filter[key] = value
         return apply_ascii_art(args_for_filter)
     if filter_name == "Motion":
         args_for_filter = {}
         for key, value in args.items():
             if key in (
-                    "MotionTransformer",
-                    "horizontal wave",
-                    "vertical wave",
-                    "horizontal spike",
-                    "vertical spike",
-                    "explode",
-                    "image_label_w",
-                    "image_label_h"
+                "MotionTransformer",
+                "horizontal wave",
+                "vertical wave",
+                "horizontal spike",
+                "vertical spike",
+                "explode",
+                "image_label_w",
+                "image_label_h",
             ):
                 args_for_filter[key] = value
         return apply_motion(args_for_filter)

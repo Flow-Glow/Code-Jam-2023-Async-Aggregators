@@ -19,8 +19,13 @@ class Dock(QWidget):
     # Define a new signal at the top of the class
     controlValueChanged = pyqtSignal(str, int)
 
-    def __init__(self, level: Level, image_label: QLabel, image_display: QWidget,
-                 update_secret_code_callback: Callable) -> None:
+    def __init__(
+        self,
+        level: Level,
+        image_label: QLabel,
+        image_display: QWidget,
+        update_secret_code_callback: Callable,
+    ) -> None:
         super().__init__()
 
         self.level = level
@@ -50,11 +55,13 @@ class Dock(QWidget):
                     {
                         "first_color": value1,
                         "second_color": value2,
-                    }
+                    },
                 )
             )
 
-            control_panel.ascii.connect(lambda cp=control_panel: self.update_image_to_ascii(cp.title))
+            control_panel.ascii.connect(
+                lambda cp=control_panel: self.update_image_to_ascii(cp.title)
+            )
             self.filters.append(control_panel)
 
         layout = self._create_central_dock()
@@ -161,7 +168,9 @@ class Dock(QWidget):
         layout = self._create_tabbed_controls()
         layout.setCurrentIndex(index)
 
-    def update_args_and_image(self, filter_title: str, label: str, value: int, args: dict) -> None:
+    def update_args_and_image(
+        self, filter_title: str, label: str, value: int, args: dict
+    ) -> None:
         """Update the args_cache and then apply the filter with the updated args"""
         # Update the cache with the slider value
         self.args_cache[label] = value
@@ -218,7 +227,9 @@ class Dock(QWidget):
         new_image = apply_filter(filter_title, args_to_pass)
 
         # Replace QLabel image with ImageViewer to allow mouse wheel and drag event for zooming
-        image_viewer = ImageViewer(QSize(self.img_label.width(), self.img_label.height()))
+        image_viewer = ImageViewer(
+            QSize(self.img_label.width(), self.img_label.height())
+        )
         image_viewer.set_image(new_image)
 
         frame_layout = self.image_display.layout()

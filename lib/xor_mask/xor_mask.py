@@ -28,7 +28,9 @@ def generate_image(alphanumeric: str, difficulty: int) -> Image.Image:
 
     image = Image.new("L", image_size, "white")
     draw = ImageDraw.Draw(image)
-    font = ImageFont.truetype(str(Path("lib/xor_mask/BebasNeue-Regular.ttf")), font_size)
+    font = ImageFont.truetype(
+        str(Path("lib/xor_mask/BebasNeue-Regular.ttf")), font_size
+    )
     # Draw the character in black on the image
     draw.text(offset, alphanumeric, fill="black", font=font, spacing=0)
     binary_image = image.point(lambda p: 255 if p > 128 else 0)
@@ -38,7 +40,9 @@ def generate_image(alphanumeric: str, difficulty: int) -> Image.Image:
     return binary_image
 
 
-def generate_xor_pair(image: Image.Image, alphanumeric: str) -> Tuple[Image.Image, Image.Image]:
+def generate_xor_pair(
+    image: Image.Image, alphanumeric: str
+) -> Tuple[Image.Image, Image.Image]:
     """
     Split the original image into two images suc that when XORed, can reconstruct the original image back
 
@@ -116,7 +120,9 @@ def mask_images(image1: Image.Image, image2: Image.Image) -> Image.Image:
     # XOR all the pixels from both images to generate the masked image
     for i in range(w):
         for j in range(h):
-            result_array[i][j] = 255 if image1_array[i][j] ^ image2_array[i][j] == 0 else 0
+            result_array[i][j] = (
+                255 if image1_array[i][j] ^ image2_array[i][j] == 0 else 0
+            )
 
     # Convert numpy arrays back to images
     result = Image.fromarray(result_array)

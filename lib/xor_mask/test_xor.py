@@ -30,7 +30,9 @@ class TestXorMask(unittest.TestCase):
     def test_generate_image_medium_difficulty(self) -> None:
         """Test that the characters in the secret word is generated into image of correct size"""
         self.assertEqual(len(self.original_images), len(self.secret))
-        self.assertEqual(self.original_images[next(iter(self.original_images))].size, (50, 50))
+        self.assertEqual(
+            self.original_images[next(iter(self.original_images))].size, (50, 50)
+        )
 
     def test_generate_xor_mask_pair_images(self) -> None:
         """Test that the original image creates two xor pair images"""

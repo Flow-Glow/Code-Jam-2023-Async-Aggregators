@@ -8,7 +8,9 @@ from src.utils.apply_double_exposure import LRUCachePIL
 _image_cache = LRUCachePIL(capacity=10)  # Cache capacity of 10 images
 
 
-def apply_color_swap(image: tuple, first_color: str, second_color: str, w: int, h: int) -> QPixmap:
+def apply_color_swap(
+    image: tuple, first_color: str, second_color: str, w: int, h: int
+) -> QPixmap:
     """
     Apply color swap to an image
 
@@ -24,7 +26,7 @@ def apply_color_swap(image: tuple, first_color: str, second_color: str, w: int, 
         "Chocolate": (229, 95, 24),
         "Flamenco": (236, 135, 67),
         "Casablanca": (238, 171, 98),
-        "Buff": (242, 217, 143)
+        "Buff": (242, 217, 143),
     }
     img_path = str(image)
     if not (_img := _image_cache.get(img_path)):
@@ -43,7 +45,9 @@ def apply_color_swap(image: tuple, first_color: str, second_color: str, w: int, 
     # Convert swapped PIL image to QPixmap
     swapped_image = swapped_image.convert("RGBA")
     data = swapped_image.tobytes("raw", "BGRA")
-    qim = QImage(data, swapped_image.size[0], swapped_image.size[1], QImage.Format.Format_ARGB32)
+    qim = QImage(
+        data, swapped_image.size[0], swapped_image.size[1], QImage.Format.Format_ARGB32
+    )
     pixmap = QPixmap.fromImage(qim)
     pixmap = pixmap.scaled(w, h)
     return pixmap

@@ -87,8 +87,12 @@ def img_to_ascii(img: Image.Image, dens: int) -> List[str]:
     return ascii_
 
 
-def ascii_to_img(ascii_text_file_path: Path, coordinates: List[int], input_img_size: Tuple[int, int],
-                 output_path: Path) -> Image.Image:
+def ascii_to_img(
+    ascii_text_file_path: Path,
+    coordinates: List[int],
+    input_img_size: Tuple[int, int],
+    output_path: Path,
+) -> Image.Image:
     """
     Creates image file from ascii text file
 
@@ -137,8 +141,12 @@ def seed_secret(ascii_file_path: Path, secret: str, binary_mode: bool) -> None:
     secret_length = len(secret)
 
     position = random.randint(0, line_length - secret_length - 1)
-    lines[random_line] = (
-        "".join([lines[random_line][0:position], secret, lines[random_line][position + secret_length:]])
+    lines[random_line] = "".join(
+        [
+            lines[random_line][0:position],
+            secret,
+            lines[random_line][position + secret_length :],
+        ]
     )
 
     with open(ascii_file_path, "w") as file:
@@ -166,10 +174,14 @@ def validate_secret_length(secret: str, input_img_w: int) -> None:
     :return: None
     """
     if len(secret) > input_img_w // 100:
-        raise ValueError("The secret phrase provided is too long to be hidden in this image size.")
+        raise ValueError(
+            "The secret phrase provided is too long to be hidden in this image size."
+        )
 
 
-def generate_ascii_file(input_img: Image.Image, ascii_file_path: Path, dens: int) -> None:
+def generate_ascii_file(
+    input_img: Image.Image, ascii_file_path: Path, dens: int
+) -> None:
     """
     Generate ascii file from image input
 

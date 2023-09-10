@@ -46,7 +46,9 @@ class Window(QMainWindow):
         main_layout.addWidget(image_display, 1, 1)
 
         # Central dock
-        self.dock = Dock(self.level, self.img_label, image_display, self._update_secret_code)
+        self.dock = Dock(
+            self.level, self.img_label, image_display, self._update_secret_code
+        )
         main_layout.addWidget(self.dock, 2, 1)
 
         return main_layout
@@ -74,13 +76,17 @@ class Window(QMainWindow):
         width_scale = max_width / img_size.width()
         height_scale = max_height / img_size.height()
         scale_factor = min(width_scale, height_scale)
-        qsize = QSize(int(img_size.width() * scale_factor), int(img_size.height() * scale_factor))
+        qsize = QSize(
+            int(img_size.width() * scale_factor), int(img_size.height() * scale_factor)
+        )
         scaled_img = img.scaled(qsize)
 
         # Convert img_label to an instance variable
         self.img_label = QLabel(self)
         self.img_label.setPixmap(scaled_img)
-        self.img_label.setScaledContents(True)  # Removes the discrepancy between true image size and QLabel size
+        self.img_label.setScaledContents(
+            True
+        )  # Removes the discrepancy between true image size and QLabel size
 
         layout.addWidget(self.img_label)
         layout.addLayout(self._create_tabbed_controls())

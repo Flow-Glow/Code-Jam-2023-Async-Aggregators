@@ -79,15 +79,15 @@ class Level:
                             ],
                             "dropdowns": [],
                             "description": "Within the confines of a digital realm, "
-                                           "a cryptic puzzle materializes on the screen. "
-                                           "It appears as a static image, unassuming at first glance. "
-                                           "Yet, in this virtual world, the challenge is no less mysterious."
-                                           "A seemingly ordinary image, pixel by pixel, conceals a hidden code. "
-                                           "To unlock its secrets, you must change the image itself. "
-                                           "With each  alteration, the pixels shift, "
-                                           "rearranging themselves into a new configuration. "
-                                           "The code, ever elusive, lurks just beneath the surface, "
-                                           "waiting to be discovered."
+                            "a cryptic puzzle materializes on the screen. "
+                            "It appears as a static image, unassuming at first glance. "
+                            "Yet, in this virtual world, the challenge is no less mysterious."
+                            "A seemingly ordinary image, pixel by pixel, conceals a hidden code. "
+                            "To unlock its secrets, you must change the image itself. "
+                            "With each  alteration, the pixels shift, "
+                            "rearranging themselves into a new configuration. "
+                            "The code, ever elusive, lurks just beneath the surface, "
+                            "waiting to be discovered.",
                         },
                     ),
                     {
@@ -113,11 +113,11 @@ class Level:
                             ],
                             "dropdowns": [],
                             "description": "Within the shadowy depths of the digital realm, a mysterious symbol "
-                                           "weaves a cryptic tale. As you tread cautiously through this enigmatic "
-                                           "landscape, look beyond the obvious, for the answer lies in the "
-                                           "unspoken_connector that guides the way. What compound_word emerges from "
-                                           "the darkness, uniting the virtual and the tangible with its "
-                                           "discreet_presence?"
+                            "weaves a cryptic tale. As you tread cautiously through this enigmatic "
+                            "landscape, look beyond the obvious, for the answer lies in the "
+                            "unspoken_connector that guides the way. What compound_word emerges from "
+                            "the darkness, uniting the virtual and the tangible with its "
+                            "discreet_presence?",
                         },
                     ),
                     {
@@ -138,17 +138,16 @@ class Level:
                                 ["Rust", "Chocolate", "Flamenco", "Casablanca", "Buff"]
                             ],
                             "description": "The code is a lifeline, a thread of order within the digital chaos, "
-                                           "a signal in the noise. "
-                                           "As you decrypt its meaning, "
-                                           "you can't help but wonder what secrets it holds, "
-                                           "what mysteries it guards. "
-                                           "The digital world stretches out before you, "
-                                           "a labyrinth of information and intrigue, "
-                                           "daring you to continue your quest, "
-                                           "to unravel the enigma hidden within the noisy image.",
+                            "a signal in the noise. "
+                            "As you decrypt its meaning, "
+                            "you can't help but wonder what secrets it holds, "
+                            "what mysteries it guards. "
+                            "The digital world stretches out before you, "
+                            "a labyrinth of information and intrigue, "
+                            "daring you to continue your quest, "
+                            "to unravel the enigma hidden within the noisy image.",
                             "combo_box_buttons": ["swap"],
                         },
-
                     ),
                     {},
                 )
@@ -162,19 +161,19 @@ class Level:
                             "sliders": [],
                             "dropdowns": [],
                             "description": "In the enigmatic world of 'Digital Shadows,' you're not just a player; "
-                                           "you're an intrepid explorer of the digital frontier. As you venture "
-                                           "through hidden corners of the web, you'll encounter mysterious images "
-                                           "that seem to whisper hidden truths. In this realm, secrets are veiled "
-                                           "within intricate patterns, waiting for the discerning eye to unravel "
-                                           "their significance. But remember, to truly understand, you must 'look "
-                                           "under a different eye,' unveiling the cryptic messages concealed in these "
-                                           "enigmatic visuals. Only then can you gain passage to the deeper layers of "
-                                           "underground hacker dens, forgotten warehouses, and secure safe houses. "
-                                           "Decoding these clandestine messages is your ticket to unlocking the next "
-                                           "level of intrigue. Are you ready to uncover the secrets lurking in the "
-                                           "Digital Shadows?",
-                            "buttons": ["Unlock Digital Glyphs"]
-                        }
+                            "you're an intrepid explorer of the digital frontier. As you venture "
+                            "through hidden corners of the web, you'll encounter mysterious images "
+                            "that seem to whisper hidden truths. In this realm, secrets are veiled "
+                            "within intricate patterns, waiting for the discerning eye to unravel "
+                            "their significance. But remember, to truly understand, you must 'look "
+                            "under a different eye,' unveiling the cryptic messages concealed in these "
+                            "enigmatic visuals. Only then can you gain passage to the deeper layers of "
+                            "underground hacker dens, forgotten warehouses, and secure safe houses. "
+                            "Decoding these clandestine messages is your ticket to unlocking the next "
+                            "level of intrigue. Are you ready to uncover the secrets lurking in the "
+                            "Digital Shadows?",
+                            "buttons": ["Unlock Digital Glyphs"],
+                        },
                     ),
                     {},
                 )
@@ -214,8 +213,8 @@ class Level:
                             ],
                             "dropdowns": [],
                             "description": "We were unable to finish this level, "
-                                           "but we really liked this image editing functionality."
-                                           "Thanks for playing!"
+                            "but we really liked this image editing functionality."
+                            "Thanks for playing!",
                         },
                     ),
                     {
@@ -226,7 +225,7 @@ class Level:
                         ),
                     },
                 ),
-            ]
+            ],
         ]
 
         if 0 <= self.level_number - 1 < len(filters):
@@ -235,7 +234,7 @@ class Level:
             # Return an empty FilterList if out-of-bounds
             return []
 
-    def level_up(self) -> 'Level':
+    def level_up(self) -> "Level":
         """
         Level up the game
 

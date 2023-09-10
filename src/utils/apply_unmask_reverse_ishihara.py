@@ -45,7 +45,13 @@ def apply_unmask_reverse_ishihara(args: dict) -> QPixmap:
         # Convert the numpy array (OpenCV image) to a QImage
         height, width, channel = unmasked_image_rgb.shape
         bytes_per_line = 3 * width
-        q_image = QImage(unmasked_image_rgb.data, width, height, bytes_per_line, QImage.Format.Format_RGB888)
+        q_image = QImage(
+            unmasked_image_rgb.data,
+            width,
+            height,
+            bytes_per_line,
+            QImage.Format.Format_RGB888,
+        )
 
         # Convert the QImage to QPixmap
         pixmap = QPixmap.fromImage(q_image)

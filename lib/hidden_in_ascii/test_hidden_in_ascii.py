@@ -36,7 +36,10 @@ class TestPrepareInputImage(unittest.TestCase):
 
     def test_input_file_exists(self) -> None:
         """Check that the test file that will be used in this test suite exists in the directory"""
-        self.assertTrue(self.input_file_path.exists(), f"Test file '{self.input_file_path}' does not exist")
+        self.assertTrue(
+            self.input_file_path.exists(),
+            f"Test file '{self.input_file_path}' does not exist",
+        )
 
     def test_validate_image_size_exception(self) -> None:
         """Test that image validation raises errors on invalid image size"""
@@ -44,7 +47,9 @@ class TestPrepareInputImage(unittest.TestCase):
         small_image = input_image.crop((0, 0, 100, 100))
         with self.assertRaises(ValueError) as e:
             validate_image_size(small_image)
-        self.assertEqual(str(e.exception), "Please provide an image size bigger than 1000x1000!")
+        self.assertEqual(
+            str(e.exception), "Please provide an image size bigger than 1000x1000!"
+        )
 
     def test_validate_secret_length_exception(self) -> None:
         """Test that validation raises errors if the secret phrase is too long compared to image size"""
@@ -52,7 +57,10 @@ class TestPrepareInputImage(unittest.TestCase):
         secret = "a" * 11
         with self.assertRaises(ValueError) as e:
             validate_secret_length(secret, input_image_w)
-        self.assertEqual(str(e.exception), "The secret phrase provided is too long to be hidden in this image size.")
+        self.assertEqual(
+            str(e.exception),
+            "The secret phrase provided is too long to be hidden in this image size.",
+        )
 
     def test_prepare_input(self) -> None:
         """Test that input is properly cropped to a square"""
@@ -123,7 +131,12 @@ class TestAsciiToImage(unittest.TestCase):
 
     def test_ascii_to_image(self) -> None:
         """Test that the output file has been created and that the image size is appropriate"""
-        output_img = ascii_to_img(self.ascii_file_path, self.coordinates, self.input_img.size, self.output_file_path)
+        output_img = ascii_to_img(
+            self.ascii_file_path,
+            self.coordinates,
+            self.input_img.size,
+            self.output_file_path,
+        )
         self.assertTrue(self.output_file_path.exists())
         self.assertEqual(output_img.size, self.input_img.size)
 

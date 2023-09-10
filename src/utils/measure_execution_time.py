@@ -9,6 +9,7 @@ def measure_execution_time(func: Callable) -> Any:
     :param func: function to measure
     :return:
     """
+
     def wrapper(*args: Any, **kwargs: Any) -> Any:
         """
         Wrapper function

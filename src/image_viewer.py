@@ -39,9 +39,13 @@ class ImageViewer(QGraphicsView):
         if not rect.isNull():
             self.setSceneRect(rect)
             if not self._empty:
-                scene_rect = self.transform().mapRect(rect)  # Dimensions of th image and applies transformation
-                factor = min(self._qsize.width() / scene_rect.width(),
-                             self._qsize.height() / scene_rect.height())
+                scene_rect = self.transform().mapRect(
+                    rect
+                )  # Dimensions of th image and applies transformation
+                factor = min(
+                    self._qsize.width() / scene_rect.width(),
+                    self._qsize.height() / scene_rect.height(),
+                )
                 self.scale(factor, factor)
             self._zoom = 0
 

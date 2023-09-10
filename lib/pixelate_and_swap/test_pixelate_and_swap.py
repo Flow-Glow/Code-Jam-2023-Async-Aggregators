@@ -105,7 +105,7 @@ class TestSwap(unittest.TestCase):
         colors_before_swap = {
             (255, 255, 255): 0,  # White
             (0, 0, 0): 0,  # Black
-            (255, 0, 0): 0  # Red
+            (255, 0, 0): 0,  # Red
         }
         for pixel in test_image.getdata():
             if pixel in colors_before_swap:
@@ -118,20 +118,26 @@ class TestSwap(unittest.TestCase):
         colors_after_swap = {
             (255, 255, 255): 0,  # White
             (0, 0, 0): 0,  # Black
-            (255, 0, 0): 0  # Red
+            (255, 0, 0): 0,  # Red
         }
         for pixel in swapped.getdata():
             if pixel in colors_after_swap:
                 colors_after_swap[pixel] += 1
 
         # Assert that the number of white pixels after swapping is equal to the number of black pixels before swapping
-        self.assertEqual(colors_after_swap[(255, 255, 255)], colors_before_swap[(0, 0, 0)])
+        self.assertEqual(
+            colors_after_swap[(255, 255, 255)], colors_before_swap[(0, 0, 0)]
+        )
 
         # Assert that the number of black pixels after swapping is equal to the number of white pixels before swapping
-        self.assertEqual(colors_after_swap[(0, 0, 0)], colors_before_swap[(255, 255, 255)])
+        self.assertEqual(
+            colors_after_swap[(0, 0, 0)], colors_before_swap[(255, 255, 255)]
+        )
 
         # Assert that the number of red pixels remains unchanged
-        self.assertEqual(colors_after_swap[(255, 0, 0)], colors_before_swap[(255, 0, 0)])
+        self.assertEqual(
+            colors_after_swap[(255, 0, 0)], colors_before_swap[(255, 0, 0)]
+        )
 
         # Assert that there are no other colors in the swapped image
         for pixel in swapped.getdata():

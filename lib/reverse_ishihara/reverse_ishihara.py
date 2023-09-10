@@ -10,9 +10,14 @@ from src.utils.lru_cache_pil import LRUCachePIL
 image_cache = LRUCachePIL(10)
 
 
-def reverse_ishihara(image: Image.Image, message: str = None,
-                     color_blind_color: tuple = (155, 155, 0), noise_color: tuple = (150, 151, 0),
-                     noise_density: float = 0.006, dot_radius: int = 6) -> Image.Image:
+def reverse_ishihara(
+    image: Image.Image,
+    message: str = None,
+    color_blind_color: tuple = (155, 155, 0),
+    noise_color: tuple = (150, 151, 0),
+    noise_density: float = 0.006,
+    dot_radius: int = 6,
+) -> Image.Image:
     """
     Generate a reverse Ishihara image from an input image.
 
@@ -34,11 +39,15 @@ def reverse_ishihara(image: Image.Image, message: str = None,
         left, top, right, bottom = font.getbbox(message)
         text_width, text_height = right - left, bottom - top
 
-        text_img = Image.new('1', (text_width, text_height), color='white')
+        text_img = Image.new("1", (text_width, text_height), color="white")
         text_draw = ImageDraw.Draw(text_img)
-        text_draw.text((-left, -top), message, fill='black', font=font)  # Notice the negative offsets
+        text_draw.text(
+            (-left, -top), message, fill="black", font=font
+        )  # Notice the negative offsets
 
-        dot_density_for_text = 0.001  # This determines the density of the dots. Adjust as needed (0 to 1).
+        dot_density_for_text = (
+            0.001  # This determines the density of the dots. Adjust as needed (0 to 1).
+        )
 
         center_x_offset = (image.width - text_width) // 2
         center_y_offset = (image.height - text_height) // 2
@@ -46,24 +55,37 @@ def reverse_ishihara(image: Image.Image, message: str = None,
         # For each black pixel in the text image, draw a dot on the main image
         for y in range(text_height):
             for x in range(text_width):
-                if text_img.getpixel((x, y)) == 0 and random.random() < dot_density_for_text:
+                if (
+                    text_img.getpixel((x, y)) == 0
+                    and random.random() < dot_density_for_text
+                ):
                     # Adjust these lines to position the text at the center
                     center_x = x + center_x_offset
                     center_y = y + center_y_offset
-                    draw.ellipse([(center_x - dot_radius, center_y - dot_radius),
-                                  (center_x + dot_radius, center_y + dot_radius)], fill=color_blind_color)
+                    draw.ellipse(
+                        [
+                            (center_x - dot_radius, center_y - dot_radius),
+                            (center_x + dot_radius, center_y + dot_radius),
+                        ],
+                        fill=color_blind_color,
+                    )
 
     # Add noise
     num_noise_dots = int(noise_density * image.width * image.height)
     for _ in range(num_noise_dots):
         x = random.randint(0 + dot_radius, image.width - 1 - dot_radius)
         y = random.randint(0 + dot_radius, image.height - 1 - dot_radius)
-        draw.ellipse([(x - dot_radius, y - dot_radius), (x + dot_radius, y + dot_radius)], fill=noise_color)
+        draw.ellipse(
+            [(x - dot_radius, y - dot_radius), (x + dot_radius, y + dot_radius)],
+            fill=noise_color,
+        )
 
     return image
 
 
-def unmask_reverse_ishihara(image_path: str, a_scale: int = 2, b_scale: int = 2) -> np.array:
+def unmask_reverse_ishihara(
+    image_path: str, a_scale: int = 2, b_scale: int = 2
+) -> np.array:
     """
     Unmask a reverse Ishihara image
 
@@ -86,7 +108,9 @@ def unmask_reverse_ishihara(image_path: str, a_scale: int = 2, b_scale: int = 2)
     b_channel = cv2.normalize(b_channel * b_scale, None, 0, 255, cv2.NORM_MINMAX)
 
     # Merge the channels back
-    enhanced_lab_image = cv2.merge([l_channel, a_channel.astype(np.uint8), b_channel.astype(np.uint8)])
+    enhanced_lab_image = cv2.merge(
+        [l_channel, a_channel.astype(np.uint8), b_channel.astype(np.uint8)]
+    )
 
     # Convert back to RGB
     enhanced_rgb_image = cv2.cvtColor(enhanced_lab_image, cv2.COLOR_Lab2BGR)
