@@ -19,7 +19,7 @@ class DoubleExposureTestCase(unittest.TestCase):
         image2 = Image.new("RGB", (200, 200), (255, 0, 0))
 
         # Call the double_exposure function
-        result_image = double_exposure(image1, image2)
+        result_image = double_exposure(image2, image1)
 
         # Check if the size of the result image matches the input images
         self.assertEqual(result_image.size, (200, 200))
@@ -39,7 +39,7 @@ class DoubleExposureTestCase(unittest.TestCase):
         image2 = Image.new("RGB", (200, 200), (0, 255, 0))  # Green
 
         # Blend the images with alpha = 0.0 (result should be the first image)
-        result_image = double_exposure(image1, image2, alpha=0.0)
+        result_image = double_exposure(image2, image1, alpha=0.0)
 
         # Check if the size of the result image matches the input images
         self.assertEqual(result_image.size, (200, 200))
@@ -58,7 +58,7 @@ class DoubleExposureTestCase(unittest.TestCase):
         image2 = Image.new("RGB", (200, 200), (0, 255, 0))  # Green
 
         # Blend the images with alpha = 1.0 (result should be the second image)
-        result_image = double_exposure(image1, image2, alpha=1.0)
+        result_image = double_exposure(image2, image1, alpha=1.0)
 
         # Check if the size of the result image matches the input images
         self.assertEqual(result_image.size, (200, 200))
