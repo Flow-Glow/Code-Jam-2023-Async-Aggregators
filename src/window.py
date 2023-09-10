@@ -63,7 +63,7 @@ class Window(QMainWindow):
         )
 
         layout = QHBoxLayout(frame)
-        img = QPixmap(str(self.level.img_source))
+        img = QPixmap(str(self.level.get_image_source()))
 
         # Define max image size constraints (70% of height and 60% of width of the user's primary screen size)
         max_height = self.screen_size.height() * 0.7
@@ -91,7 +91,7 @@ class Window(QMainWindow):
         """Create the tabbed controls layout"""
         layout = QStackedLayout()
 
-        for filter_item in self.level.filters:
+        for filter_item in self.level.get_filters():
             if filter_item[1] is not None:
                 layout.addWidget(filter_item[1])
 
@@ -99,7 +99,7 @@ class Window(QMainWindow):
 
     def _update_secret_code(self, input_code: str) -> None:
         """Update the internal secret code and check against the answer."""
-        if input_code != self.level.secret_answer:
+        if input_code != self.level.get_secret_answer():
             # If the input does not match the answer, show a notification
             msg_box = QMessageBox(self)
             msg_box.setWindowTitle("Error")

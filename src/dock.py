@@ -30,7 +30,7 @@ class Dock(QWidget):
         self.filters = []
         self.args_cache: Dict[str, int | str] = {}
 
-        for _, control_panel, args in self.level.filters:
+        for _, control_panel, args in self.level.get_filters():
             control_panel.sliderValueChanged.connect(
                 lambda label, value, cp=control_panel: self.update_args_and_image(
                     cp.title,
@@ -130,12 +130,12 @@ class Dock(QWidget):
         """Create and return the filters layout"""
         layout = QHBoxLayout()
 
-        for filter_item in self.level.filters:
+        for filter_item in self.level.get_filters():
             filter_button = QPushButton()
             filter_button.setIcon(QIcon(str(filter_item[0])))
             filter_button.setIconSize(QSize(40, 40))
 
-            filter_idx = self.level.filters.index(filter_item)
+            filter_idx = self.level.get_filters().index(filter_item)
             filter_button.pressed.connect(lambda idx=filter_idx: self._change_tab(idx))
 
             layout.addWidget(filter_button)

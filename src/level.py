@@ -16,9 +16,6 @@ class Level:
 
     def __init__(self, level_number: int):
         self.level_number = level_number
-        self.secret_answer = self.get_secret_answer()
-        self.img_source = self.get_image_source()
-        self.filters = self.get_filters()
 
     def get_image_source(self) -> Path:
         """
