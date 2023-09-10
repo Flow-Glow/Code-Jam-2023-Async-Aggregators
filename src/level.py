@@ -238,13 +238,10 @@ class Level:
             # Return an empty FilterList if out-of-bounds
             return []
 
-    def level_up(self) -> None:
+    def level_up(self) -> 'Level':
         """
         Level up the game
 
         :return: None
         """
-        self.level_number += 1
-        self.secret_answer = self.get_secret_answer()
-        self.img_source = self.get_image_source()
-        self.filters = self.get_filters()
+        return Level(self.level_number + 1)

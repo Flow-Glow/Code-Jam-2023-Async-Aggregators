@@ -114,5 +114,5 @@ class Window(QMainWindow):
             msg_box.setIcon(QMessageBox.Icon.Information)
             msg_box.exec()
 
-            self.level.level_up()
+            self.level = self.level.level_up()
             self._init_ui()
