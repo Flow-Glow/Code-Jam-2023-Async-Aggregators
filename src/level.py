@@ -77,8 +77,8 @@ class Level:
                         "Ishihara",
                         {
                             "sliders": [
-                                ("A", (0, 100), Qt.Orientation.Horizontal, True),
-                                ("B", (0, 100), Qt.Orientation.Horizontal, True),
+                                ("A", (0, 100), Qt.Orientation.Horizontal, True, 4),
+                                ("B", (0, 100), Qt.Orientation.Horizontal, True, 8),
                             ],
                             "dropdowns": [],
                             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
@@ -114,6 +114,7 @@ class Level:
                                     ("Image 1", "Image 2"),
                                     Qt.Orientation.Horizontal,
                                     False,
+                                    0
                                 )
                             ],
                             "dropdowns": [],
@@ -138,7 +139,6 @@ class Level:
                     ControlPanel(
                         "Color Swap",
                         {
-                            "sliders": [],
                             "dropdowns": [
                                 ["Rust", "Chocolate", "Flamenco", "Casablanca", "Buff"]
                             ],
@@ -167,7 +167,6 @@ class Level:
                     ControlPanel(
                         "Hidden in ASCII",
                         {
-                            "sliders": [],
                             "dropdowns": [],
                             "description": "In the enigmatic world of 'Digital Shadows,' you're not just a player; "
                                            "you're an intrepid explorer of the digital frontier. As you venture "
@@ -199,26 +198,30 @@ class Level:
                                     (0, 100),
                                     Qt.Orientation.Horizontal,
                                     False,
+                                    6
                                 ),
                                 (
                                     "vertical wave",
                                     (0, 100),
                                     Qt.Orientation.Horizontal,
                                     False,
+                                    12
                                 ),
                                 (
                                     "vertical spike",
                                     (0, 100),
                                     Qt.Orientation.Horizontal,
                                     False,
+                                    18
                                 ),
                                 (
                                     "horizontal spike",
                                     (0, 100),
                                     Qt.Orientation.Horizontal,
                                     False,
+                                    10
                                 ),
-                                ("explode", (0, 100), Qt.Orientation.Horizontal, False),
+                                ("explode", (0, 100), Qt.Orientation.Horizontal, False, 12),
                             ],
                             "dropdowns": [],
                             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "

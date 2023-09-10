@@ -62,7 +62,7 @@ class ControlPanel(QWidget):
         layout.addWidget(title_box)
 
         for info in widget_info.get('sliders', []):
-            label, slider_range, orientation, disable_mouse_drag = info
+            label, slider_range, orientation, disable_mouse_drag, starting_pos = info
             layout.addWidget(QLabel(label))
             if disable_mouse_drag:
                 slider = NoDragSlider(orientation)
@@ -78,6 +78,7 @@ class ControlPanel(QWidget):
             slider_frame = self.style_slider(slider, slider_range, orientation == Qt.Orientation.Horizontal)
             slider_frame.setMaximumHeight(45)
             layout.addWidget(slider_frame)
+            slider.setValue(starting_pos)
 
         # Adding dropdowns
         for info in widget_info.get('dropdowns', []):
